@@ -1,1 +1,4 @@
-window.onload = function() { kwior.setAllEles(); }
+window.onload = function() { 
+    kwior.setAllEles(); 
+    byid('msg').focus();
+}

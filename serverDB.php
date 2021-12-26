@@ -29,13 +29,14 @@ class dao_jsio_example extends dao_generic_3 {
 		$ids = $a['pageid'] . '-' . $a['eid'];
 		unset ($a['pageid']);
 		$u = ['_id' => $ids];
+		$a['len'] = strlen($a['v']);
 		$r = $this->jcoll->upsert($u, $a);
 
 		return $this->retHTTP($r, $u, $a['v']);
 	}
 
 	private function retHTTP($dbrin, $u, $vin) {
-		$okr = ['u' => $u, 'v' => $vin, 'kwdbss' => 'OK'];
+		$okr = ['u' => $u, 'v' => $vin, 'kwdbss' => 'OK', 'len' => strlen($vin) ];
 		$t = $dbrin;
 		if ( $t->getUpsertedCount() === 1) return $okr;
 		if ( $t->getModifiedCount() === 1) return $okr;
