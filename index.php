@@ -17,7 +17,7 @@
 <script src='win_onload.js' ></script>
 
 <style>
-	#kwjsioResponseEle { min-width: 10ex; display: inline-block; }
+	#kwjsioResponseEle { min-width: 18ex; display: inline-block; }
 	#msg { width: 93vw; height: 80vh; }
 	.stad { margin-bottom: 0.2ex; }
 </style>
@@ -25,7 +25,7 @@
 </head>
 <body>
 	<div class='stad'>
-		Status: <span id='kwjsioResponseEle'></span>
+		<span id='kwjsioResponseEle'></span>
 		<span id='savedCh'>0</span>
 		/ <span><?php echo(KW_MSG_2021_1226_1_MAXLEN); ?> saved</span>
 	</div>

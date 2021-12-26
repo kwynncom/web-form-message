@@ -6,7 +6,7 @@ class kwior_messages {
 		this.init();
 	}
 	
-	init() { this.gen('waiting...');	}
+	init() { this.gen('Nothing entered.');	}
 	sending() { this.gen('saving...', 'yellow');}
 	err(o) { 
 		if (o && o.msg) this.gen(o.msg, 'red');
