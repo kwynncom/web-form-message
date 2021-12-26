@@ -1,6 +1,7 @@
 <?php
 
 require_once('/opt/kwynn/kwutils.php');
+require_once(__DIR__ . '/config.php');
 
 class dao_jsio_example extends dao_generic_3 {
     const dbName = 'jsio_tests';
@@ -12,10 +13,19 @@ class dao_jsio_example extends dao_generic_3 {
     }
 
 	private function clean() {
-		// if (!isAWS() & time() < strtotime('2021-12-26 03:00')) $this->jcoll->drop();
+		// if (!isAWS() & time() < strtotime('2021-12-26 03:50')) $this->jcoll->drop();
 	}
 	
-	public function putOrDie($a) {
+	public static function valOrDie($a) {
+		kwas(is_array($a) && count($a) === 3, 'bad input count - 0244');
+		kwas(uoids_is_valid($a['pageid']), 'bad pageid');
+		kwas(is_string($a['v']) && strlen($a['v']) <= KW_MSG_2021_1226_1_MAXLEN, 'not string / too long');	
+		kwas($a['eid'] === 'msg', 'bad input property - 0243');
+		return $a;
+	}
+	
+	public function putOrDie($ain) {
+		$a = self::valOrDie ($ain); unset($ain);
 		$ids = $a['pageid'] . '-' . $a['eid'];
 		unset ($a['pageid']);
 		$u = ['_id' => $ids];

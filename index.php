@@ -17,15 +17,17 @@
 <script src='win_onload.js' ></script>
 
 <style>
-	#kwjsioResponseEle { min-width: 25ex; display: inline-block; }
+	#kwjsioResponseEle { min-width: 10ex; display: inline-block; }
+	#msg { width: 93vw; height: 80vh; }
+	.stad { margin-bottom: 0.2ex; }
 </style>
 
 </head>
 <body>
-	<div>
-		Statuts: <span id='kwjsioResponseEle'></span>
+	<div class='stad'>
+		Status: <span id='kwjsioResponseEle'></span>
 		<span id='savedCh'>0</span>
-		/ <span><?php echo(KW_MSG_2021_1226_1_MAXLEN); ?> allowed characters saved</span>
+		/ <span><?php echo(KW_MSG_2021_1226_1_MAXLEN); ?> saved</span>
 	</div>
 	<div>
 		<input id='pageid' type='hidden' value='<?php echo(uoids()); ?>' />
