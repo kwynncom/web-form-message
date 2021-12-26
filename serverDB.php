@@ -4,16 +4,16 @@ require_once('/opt/kwynn/kwutils.php');
 require_once(__DIR__ . '/config.php');
 
 class dao_jsio_example extends dao_generic_3 {
-    const dbName = 'jsio_tests';
+    const dbName = 'user_form_msgs';
 
     public function __construct() {
 		parent::__construct(self::dbName, __FILE__);
-		$this->creTabs(['j' => 'jsdat']);
+		$this->creTabs(['m' => 'msgs']);
 		$this->clean();
     }
 
 	private function clean() {
-		// if (!isAWS() & time() < strtotime('2021-12-26 03:50')) $this->jcoll->drop();
+		// if (!isAWS() & time() < strtotime('2021-12-26 03:50')) $this->mcoll->drop();
 	}
 	
 	public static function valOrDie($a) {
@@ -30,7 +30,7 @@ class dao_jsio_example extends dao_generic_3 {
 		unset ($a['pageid']);
 		$u = ['_id' => $ids];
 		$a['len'] = strlen($a['v']);
-		$r = $this->jcoll->upsert($u, $a);
+		$r = $this->mcoll->upsert($u, $a);
 
 		return $this->retHTTP($r, $u, $a['v']);
 	}
@@ -42,7 +42,7 @@ class dao_jsio_example extends dao_generic_3 {
 		if ( $t->getModifiedCount() === 1) return $okr;
 		kwas($t->getMatchedCount () === 1 , 'neither matched nor modified');
 
-		$r = $this->jcoll->findOne($u); kwas(isset($r['v']), 'checking for already-saved value and found nothing');
+		$r = $this->mcoll->findOne($u); kwas(isset($r['v']), 'checking for already-saved value and found nothing');
 		if ($r['v'] === $vin) return $okr;
 
 		throw new Exception('neither saved nor already in db');
