@@ -18,8 +18,10 @@ function send(ein, cb) {
     
 	const sob = {};
 	sob.eid		= ein.id;
+        if (Object.keys(ein.dataset).length) 
 	sob.dataset = ein.dataset;
 	sob.v       = ein.value;
+        sob.pageid = byid('pageid').value;
 		
     const formData = new FormData();
     formData.append('POSTob',JSON.stringify(sob)); 

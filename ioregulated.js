@@ -7,7 +7,7 @@ class kwior {
 		this.timeoutms =  this.timeoutS * 1000;
 	}
 	
-	static setAllEles() { document.querySelectorAll('input[type=text], textarea').forEach(function(e) { new kwior(e);	}); }
+	static setAllEles() { document.querySelectorAll('input[type=text], textarea').forEach(function(e) { new kwior(e, send);	}); }
 	
 	static setEle(e, cb, mreid)  { new kwior(e, cb, mreid);	}
 	

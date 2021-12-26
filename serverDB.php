@@ -8,11 +8,19 @@ class dao_jsio_example extends dao_generic_3 {
     public function __construct() {
 		parent::__construct(self::dbName, __FILE__);
 		$this->creTabs(['j' => 'jsdat']);
+		$this->clean();
     }
 
+	private function clean() {
+		// if (!isAWS() & time() < strtotime('2021-12-26 03:00')) $this->jcoll->drop();
+	}
+	
 	public function putOrDie($a) {
-		$u = ['uid' => $a['dataset']['uid']];
+		$ids = $a['pageid'] . '-' . $a['eid'];
+		unset ($a['pageid']);
+		$u = ['_id' => $ids];
 		$r = $this->jcoll->upsert($u, $a);
+
 		return $this->retHTTP($r, $u, $a['v']);
 	}
 

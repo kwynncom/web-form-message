@@ -1,5 +1,6 @@
 class kwior_messages {
 	constructor(mid, vele) {
+                if (!mid) mid = 'kwjsioResponseEle';
 		this.mase = byid(mid);
 		this.vele = vele;
 		this.init();
@@ -16,12 +17,13 @@ class kwior_messages {
 	ok(v) {
 		if (v !== this.vele.value) return;
 		this.gen('OK', 'rgb(153, 255, 153)');
+                byid('savedCh').innerHTML = v.length;
 	}
 	
 	gen(t, c) {
 		this.mase.innerHTML = t;
 		if (!c) return;
-		this.vele.style.backgroundColor = c;
+		// this.vele.style.backgroundColor = c;
 	}
 	
 }
