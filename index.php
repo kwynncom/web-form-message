@@ -12,7 +12,6 @@
 <script src='ioregulated.js'></script>
 <script src='win_onload.js' ></script>
 
-
 </head>
 <body>
 	<div>

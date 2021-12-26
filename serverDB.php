@@ -1,8 +1,8 @@
 <?php
 
-require_once('/opt/kwynn/mongodb2.php');
+require_once('/opt/kwynn/kwutils.php');
 
-class dao_jsio_example extends dao_generic_2 {
+class dao_jsio_example extends dao_generic_3 {
     const dbName = 'jsio_tests';
 
     public function __construct() {
