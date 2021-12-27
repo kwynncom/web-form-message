@@ -5,7 +5,7 @@ function responseTextParse(t) {
 	return o;
 }
 
-function send(ein, cb) {
+function send(ein, cb, pageid) {
     
     let burl = 'srv/server.php';
 	
@@ -21,7 +21,7 @@ function send(ein, cb) {
         if (Object.keys(ein.dataset).length) 
 	sob.dataset = ein.dataset;
 	sob.v       = ein.value;
-        sob.pageid = byid('pageid').value;
+        sob.pageid = pageid;
 		
     const formData = new FormData();
     formData.append('POSTob',JSON.stringify(sob)); 

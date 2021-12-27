@@ -22,7 +22,7 @@ class msg_public_list {
 		foreach($res as $r) {
 			$ht .= '<tr>';
 			$ht .= '<td>';
-			$ht .= '<a href="listT.php?pubid=';
+			$ht .= '<a class="mref" href="listT.php?pubid=';
 			$ht .= $r['pubid'];
 			$ht .= '">';
 			$ht .= ++$i;
@@ -31,7 +31,7 @@ class msg_public_list {
 			$ht .= '<td>';
 			$ht .= date('m/d/Y H:i:s', $r['up_ts']);
 			$ht .= '</td>';
-			$ht .= '<td>';
+			$ht .= '<td  class="len">';
 			$ht .= $r['len'];
 			$ht .= '</td>';
 			$ht .= '</tr>' . "\n";

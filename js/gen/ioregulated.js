@@ -60,8 +60,10 @@ class kwior {
 		if (this.isokv()) return;
 		if (this.isTO()) return;
 		console.log(this.ele.id + ' - SEND');
-		this.msgo.sending();
-		this.sendCB(this.ele, this.erf);
+                const pageid = onnew.pageid();
+                if (!pageid) return;
+            	this.msgo.sending();
+		this.sendCB(this.ele, this.erf, pageid);
 	}
 	
 	evalResponse(o) {
