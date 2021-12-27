@@ -5,9 +5,10 @@ class kwior {
 		this.contSend  = 2003; // same
 		this.timeoutS  =    7;
 		this.timeoutms =  this.timeoutS * 1000;
+                this.doconlog = false;
 	}
 	
-	static setAllEles() { document.querySelectorAll('input[type=text], textarea').forEach(function(e) { new kwior(e, send);	}); }
+	static setAllEles() { document.querySelectorAll('input[type=text], textarea').forEach(function(e) { new kwior(e, sendcl.sendEle); }); }
 	
 	static setEle(e, cb, mreid)  { new kwior(e, cb, mreid);	}
 	
@@ -55,11 +56,13 @@ class kwior {
 	
 	isokv() { return this.ele.value === this.okv; }
 
+        log(sin) { if (this.doconlog) console.log(sin);     }
+
 	send() {
-		console.log(this.ele.id + ' - checking send');
+		this.log(this.ele.id + ' - checking send');
 		if (this.isokv()) return;
 		if (this.isTO()) return;
-		console.log(this.ele.id + ' - SEND');
+		this.log(this.ele.id + ' - SEND');
                 const pageid = onnew.pageid();
                 if (!pageid) return;
             	this.msgo.sending();

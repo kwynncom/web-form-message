@@ -1,29 +1,33 @@
-function responseTextParse(t) {
+class sendcl {
+    
+    static responseTextParse(t) {
 	let o = false;
 	try { o = JSON.parse(t); } catch(ex) {  }
 	if (!o) o = { 'kwdbss' : 'ERROR', 'msg' : t };
 	return o;
-}
-
-function send(ein, cb, pageid) {
-    
-    let burl = 'srv/server.php';
-	
-	if (1) burl += '?XDEBUG_SESSION_START=netbeans-xdebug';
-    const XHR = new XMLHttpRequest(); 
-    XHR.open('POST', burl);
-    XHR.onloadend = function() {
-		cb(responseTextParse(this.responseText));
     }
     
-	const sob = {};
-	sob.eid		= ein.id;
+    static sendEle(ein, cb, pageid) {
+        const sob = {};
+        sob.eid		= ein.id;
         if (Object.keys(ein.dataset).length) 
-	sob.dataset = ein.dataset;
-	sob.v       = ein.value;
+        sob.dataset = ein.dataset;
+        sob.v       = ein.value;
         sob.pageid = pageid;
-		
-    const formData = new FormData();
-    formData.append('POSTob',JSON.stringify(sob)); 
-    XHR.send(formData);
+        sendcl.sobf(sob, cb);
+    }
+    
+    static sobf(sob, cb) {
+        let burl = 'srv/server.php';
+
+        if (1) burl += '?XDEBUG_SESSION_START=netbeans-xdebug';
+        const XHR = new XMLHttpRequest(); 
+        XHR.open('POST', burl);
+        XHR.onloadend = function() { cb(sendcl.responseTextParse(this.responseText)); }
+
+        const formData = new FormData();
+        formData.append('POSTob', JSON.stringify(sob)); 
+        XHR.send(formData);        
+        
+    }
 }
