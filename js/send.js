@@ -7,7 +7,7 @@ function responseTextParse(t) {
 
 function send(ein, cb) {
     
-    let burl = 'server.php';
+    let burl = 'srv/server.php';
 	
 	if (1) burl += '?XDEBUG_SESSION_START=netbeans-xdebug';
     const XHR = new XMLHttpRequest(); 

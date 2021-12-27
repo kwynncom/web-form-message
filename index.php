@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html lang='en'>
 <?php 
-	require_once(__DIR__ . '/getuid.php'); 
-	require_once(__DIR__ . '/config.php');
+require_once(__DIR__ . '/getuid.php'); 
 ?>
 <head>
 <meta http-equiv='Content-Type' content='text/html; charset=UTF-8' />
@@ -10,11 +9,11 @@
 
 <title>send a message</title>
 
-<script src='utils.js'      ></script>
-<script src='send.js'></script>
-<script src='ioregulatedProgressMsgs.js'></script>
-<script src='ioregulated.js'></script>
-<script src='win_onload.js' ></script>
+<script src='js/utils.js'      ></script>
+<script src='js/send.js'></script>
+<script src='js/ioregulatedProgressMsgs.js'></script>
+<script src='js/ioregulated.js'></script>
+<script src='js/win_onload.js' ></script>
 
 <style>
 	#kwjsioResponseEle { min-width: 18ex; display: inline-block; }

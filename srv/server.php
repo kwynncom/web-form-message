@@ -18,7 +18,7 @@ function receive() {
 
 	$dbr = 'you should not get this response - receive() jsio ex';
 	try {
-		$dao = new dao_jsio_example();
+		$dao = new dao_msg();
 		$dbr = $dao->putOrDie($a);
 	} catch(Exception $ex) {
 		http_response_code(500); // 500 === interval server error
