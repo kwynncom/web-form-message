@@ -34,7 +34,7 @@ class msg_public_list {
 			$ht .= '<td>';
 			$ht .= $r['len'];
 			$ht .= '</td>';
-			$ht .= '</tr>';
+			$ht .= '</tr>' . "\n";
 		}
 		return $ht;
 	}
@@ -52,8 +52,11 @@ class msg_public_list {
 		
 		$msga = dao_msg::getMsg($pubid);
 		$msgraw = $msga['v'];
-
-		$htesc = htmlspecialchars($msgraw);
+		
+		$htesc  = '';
+		$htesc .= '<pre>' . "\n";
+		$htesc .= htmlspecialchars($msgraw) . "\n";
+		$htesc .= '</pre>' . "\n";
 		
 		
 		return $htesc;

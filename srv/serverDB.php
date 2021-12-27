@@ -54,7 +54,8 @@ class dao_msg extends dao_generic_3 {
 	private function retHTTP($dbrin, $u, $vin) {
 		$okr = ['u' => $u, 'v' => $vin, 'kwdbss' => 'OK', 'len' => strlen($vin) ];
 		$t = $dbrin;
-		$this->setPubKey($u, $t->getMatchedCount());
+		$mc = $t->getMatchedCount();
+		$this->setPubKey($u, $mc);
 
 		if ( $t->getUpsertedCount() === 1) return $okr;
 		if ( $t->getModifiedCount() === 1) return $okr;

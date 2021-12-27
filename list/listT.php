@@ -19,9 +19,7 @@
 		?>
 	</table>
 	<div>
-		<pre>
 <?php if (is_array($r10)) echo($r10['msg']); ?>
-		</pre>
 	</div>
 </body>
 </html>
