@@ -36,6 +36,7 @@ class onnew {
         }
         else {
             new kwior_messages();
+            byid('msg'   ).style.visibility = 'visible';
         }
     }
 }

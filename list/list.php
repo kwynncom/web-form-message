@@ -22,10 +22,11 @@ class msg_public_list {
 		foreach($res as $r) {
 			$ht .= '<tr>';
 			$ht .= '<td>';
-			$ht .= '<a class="mref" href="listT.php?pubid=';
-			$ht .= $r['pubid'];
-			$ht .= '">';
-			$ht .= ++$i;
+			++$i;
+			$ht .= "<a class='mref' href='listT.php?n=$i&pubid=$r[pubid]'>";
+			// $ht .= $r['pubid'];
+			// $ht .= "'>";
+			$ht .= $i;
 			$ht .= '</a>';
 			$ht .= '</td>';
 			$ht .= '<td>';
@@ -53,9 +54,16 @@ class msg_public_list {
 		$msga = dao_msg::getMsg($pubid);
 		$msgraw = $msga['v'];
 		
-		$htesc  = '';
-		$htesc .= '<pre>' . "\n";
-		$htesc .= htmlspecialchars($msgraw) . "\n";
+		$ht  = '';
+
+		$ht .= '<p>';		
+		if (($n = isrv('n')) && is_numeric($n)) $ht .= "# $n: ";
+		$ht .= date('m/d/Y H:i:s', $msga['up_ts']);	
+		$ht .= ", $msga[len] chars";
+		$ht .= '</p>';		
+		
+		$ht .= '<pre>' . "\n";
+		$htesc  = $ht . htmlspecialchars($msgraw) . "\n"; unset($ht);
 		$htesc .= '</pre>' . "\n";
 
 		return $htesc;

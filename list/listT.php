@@ -9,7 +9,7 @@
 <style>
     body { font-family: sans-serif; }
 	.mref { font-size: 120%; }
-	td.len { padding-left: 1.5ex; }
+	td.len { padding-left: 1.5ex; text-align: right; }
 </style>
 </head>
 <body>
@@ -19,7 +19,8 @@
 	if (is_string($r10)) {
 ?>
 	<p>The messages are not public.  The links only work for me.
-		
+		<a href='../'>new msg</a>
+		<a href='/'>home</a>
 	</p>
 
 	<table>
@@ -30,7 +31,10 @@
 	}
 	if (is_array($r10)) {  ?>
 	<div>
+		<p>back to <a href='./listT.php'>list</a></p>
+		<div>
 		<?php echo($r10['msg']); ?>
+		</div>
 	</div>
 <?php } ?>
 </body>

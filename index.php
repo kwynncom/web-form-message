@@ -17,6 +17,7 @@ require_once(__DIR__ . '/getuid.php');
 <script src='js/win_onload.js' ></script>
 
 <style>
+	body { font-family: sans-serif; }
 	#kwjsioResponseEle { min-width: 18ex; display: inline-block; }
 	#msg { width: 93vw; height: 80vh; }
 	.stad { margin-bottom: 0.2ex; }
@@ -39,6 +40,7 @@ require_once(__DIR__ . '/getuid.php');
 		<button class='dbtn' onclick='onmsgDone();'>Done</button>
 		<a class='lista' href='./list/listT.php'>msg list</a>
 		<button onclick='new onnew();'>new</button>
+		<a href='/'>home</a>
 	</div>
 </body>
 </html>
