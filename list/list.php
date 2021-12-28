@@ -57,8 +57,7 @@ class msg_public_list {
 		$htesc .= '<pre>' . "\n";
 		$htesc .= htmlspecialchars($msgraw) . "\n";
 		$htesc .= '</pre>' . "\n";
-		
-		
+
 		return $htesc;
 	}
 }

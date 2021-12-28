@@ -16,6 +16,15 @@ function receive() {
 		throw $ex;
 	}
 
+	if (isset($a['action']) && 
+			  $a['action'] === 'getpageid') { 
+		$rid = uoids();
+		$pidr['pageidact'] = 'OK';
+		$pidr['pageid'] = $rid;
+		kwjae($pidr);
+
+	}
+	
 	$dbr = 'you should not get this response - receive() jsio ex';
 	try {
 		$dao = new dao_msg();
@@ -25,8 +34,6 @@ function receive() {
 		throw $ex;
 	}
 
-	header('Content-Type: application/json');
-	echo(json_encode($dbr));
-	exit(0);
+	kwjae($dbr);
 		
 }

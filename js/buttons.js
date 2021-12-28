@@ -11,7 +11,7 @@ class onnew {
     }
     
     constructor() {
-        this.do10();
+        this.do10(false);
         this.do20();
     }
     
@@ -21,14 +21,21 @@ class onnew {
         sendcl.sobf(ob, this.dor30);
     }
     
-    dor30(din) {
-        return;
+    dor30(a) {
+        kwas(a['pageidact'] === 'OK', 'did not get proper pageid');
+        byid('pageid').value = a['pageid'];
+        do10(true);
     }
     
-    do10() {
-        byid('msg').readonly = byid('msg').disabled = true;
-        byid('pageid').value = byid('msg').value = '';
-        byid('kwjsioResponseEle').innerHTML = 'getting new id...';
-        byid('savedCh').innerHTML = 0;
+    do10(isup) {
+        byid('msg').readonly = byid('msg').disabled = !isup;
+        if (!isup) {
+            byid('pageid').value = byid('msg').value = '';
+            byid('kwjsioResponseEle').innerHTML = 'getting new id...';
+            byid('savedCh').innerHTML = 0;
+        }
+        else {
+            new kwior_messages();
+        }
     }
 }

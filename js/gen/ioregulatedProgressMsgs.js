@@ -1,12 +1,17 @@
 class kwior_messages {
 	constructor(mid, vele) {
-                if (!mid) mid = 'kwjsioResponseEle';
+                if (!mid) mid = kwior_messages.defmid();
 		this.mase = byid(mid);
 		this.vele = vele;
-		this.init();
+		this.initI();
 	}
 	
-	init() { this.gen('Nothing entered.');	}
+        static defmid() { return 'kwjsioResponseEle'; }
+        
+        static init() {  this.gen('Nothing entered.'); }
+     
+        
+	initI() {	kwior_messages.init(); }
 	sending() { this.gen('saving...', 'yellow');}
 	err(o) { 
 		if (o && o.msg) this.gen(o.msg, 'red');
