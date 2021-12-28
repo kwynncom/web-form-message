@@ -11,7 +11,7 @@ class onnew {
     }
     
     constructor() {
-        this.do10(false);
+        onnew.do10(false);
         this.do20();
     }
     
@@ -24,10 +24,10 @@ class onnew {
     dor30(a) {
         kwas(a['pageidact'] === 'OK', 'did not get proper pageid');
         byid('pageid').value = a['pageid'];
-        do10(true);
+        onnew.do10(true);
     }
     
-    do10(isup) {
+    static do10(isup) {
         byid('msg').readonly = byid('msg').disabled = !isup;
         if (!isup) {
             byid('pageid').value = byid('msg').value = '';
