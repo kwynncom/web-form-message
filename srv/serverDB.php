@@ -1,7 +1,6 @@
 <?php
 
-require_once('/opt/kwynn/kwutils.php');
-require_once(__DIR__ . '/../' . 'getuid.php');
+require_once(__DIR__ . '/../config.php');
 
 class dao_msg extends dao_generic_3 {
     const dbName = 'user_form_msgs';
@@ -29,7 +28,7 @@ class dao_msg extends dao_generic_3 {
 	
 	public static function valOrDie($a) {
 		kwas(is_array($a) && count($a) === 3, 'bad input count - 0244');
-		kwas(uoids_is_valid($a['pageid']), 'bad pageid');
+		kwas(dao_generic_3::oidsvd($a['pageid'], TRUE), 'bad pageid');
 		kwas(is_string($a['v']) && strlen($a['v']) <= KW_MSG_2021_1226_1_MAXLEN, 'not string / too long');	
 		kwas($a['eid'] === 'msg', 'bad input property - 0243');
 		return $a;
@@ -48,7 +47,7 @@ class dao_msg extends dao_generic_3 {
 	
 	private function setPubKey($u, $mc) {
 		if ($mc > 0) return;
-		$this->mcoll->upsert($u, ['pubid' => uoids(false)]);
+		$this->mcoll->upsert($u, ['pubid' => dao_generic_3::get_oids()]);
 	}
 
 	private function retHTTP($dbrin, $u, $vin) {

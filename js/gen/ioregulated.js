@@ -1,12 +1,16 @@
 class kwior {
 	
-	config() {
-		this.waitSend  =  307; // prime number
-		this.contSend  = 2003; // same
-		this.timeoutS  =    7;
-		this.timeoutms =  this.timeoutS * 1000;
-                this.doconlog = false;
-	}
+    config() {
+        this.waitSend  =  307; // prime number
+        this.contSend  = 2003; // same
+        this.timeoutS  =    7;
+        this.timeoutms =  this.timeoutS * 1000;
+        this.doconlog = false;
+        this.surl     = 'srv/server.php'
+        if (typeof kwNotifyOK === 'function') this.notiff = kwNotifyOK;
+    }
+        
+    notifyI(din) { if (typeof this.notiff === 'function') this.notiff(din); }
 	
 	static setAllEles() { document.querySelectorAll('input[type=text], textarea').forEach(function(e) { new kwior(e, sendcl.sendEle); }); }
 	
@@ -66,7 +70,7 @@ class kwior {
                 const pageid = onnew.pageid();
                 if (!pageid) return;
             	this.msgo.sending();
-		this.sendCB(this.ele, this.erf, pageid);
+		this.sendCB(this.surl, this.ele, this.erf, pageid);
 	}
 	
 	evalResponse(o) {
@@ -79,6 +83,7 @@ class kwior {
 		
 		this.okv = v;
 		this.msgo.ok(v);
+                this.notifyI(o);
 	}
 	
 	onOKSend(vv) {

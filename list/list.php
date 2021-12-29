@@ -48,7 +48,7 @@ class msg_public_list {
 	
 	public static function getMsg() {
 		if (!($pubidraw = isrv('pubid'))) return FALSE;
-		$pubid = uoids_is_valid($pubidraw); unset($pubidraw);
+		$pubid = dao_generic_3::oidsvd($pubidraw); unset($pubidraw);
 		self::showSecretOrDie();
 		
 		$msga = dao_msg::getMsg($pubid);

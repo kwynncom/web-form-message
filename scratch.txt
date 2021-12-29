@@ -1,0 +1,4 @@
+new oid
+reset oid
+make sure random
+check pub

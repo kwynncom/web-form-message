@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang='en'>
 <?php 
-require_once(__DIR__ . '/getuid.php'); 
+require_once(__DIR__ . '/config.php'); 
 ?>
 <head>
 <meta http-equiv='Content-Type' content='text/html; charset=UTF-8' />
@@ -14,6 +14,7 @@ require_once(__DIR__ . '/getuid.php');
 <script src='js/gen/send.js'></script>
 <script src='js/gen/ioregulatedProgressMsgs.js'></script>
 <script src='js/gen/ioregulated.js'></script>
+<script src='js/gen/notify.js'></script>
 <script src='js/win_onload.js' ></script>
 
 <style>
@@ -33,7 +34,7 @@ require_once(__DIR__ . '/getuid.php');
 		/ <span><?php echo(KW_MSG_2021_1226_1_MAXLEN); ?> saved</span>
 	</div>
 	<div>
-		<input id='pageid' type='hidden' value='<?php echo(uoids()); ?>' />
+		<input id='pageid' type='hidden' value='<?php echo(dao_generic_3::get_oids(TRUE)); ?>' />
 		<textarea			id='msg' ></textarea>
 	</div>
 	<div>

@@ -7,30 +7,28 @@ class sendcl {
 	return o;
     }
     
-    static sendEle(ein, cb, pageid) {
+    static sendEle(url, ein, cb, pageid) {
         const sob = {};
         sob.eid		= ein.id;
         if (Object.keys(ein.dataset).length) 
         sob.dataset = ein.dataset;
         sob.v       = ein.value;
         sob.pageid = pageid;
-        sendcl.sobf(sob, cb);
+        sendcl.sobf(url, sob, cb);
     }
     
-    static sobf(sob, cb, prt) {
-        let burl = 'srv/server.php';
-
-        if (1) burl += '?XDEBUG_SESSION_START=netbeans-xdebug';
+    static sobf(url, sob, cb, prt) {
+        if (1) url += '?XDEBUG_SESSION_START=netbeans-xdebug';
         const XHR = new XMLHttpRequest(); 
-        XHR.open('POST', burl);
+        XHR.open('POST', url);
         XHR.onloadend = function() { 
             const rt = this.responseText;
             if (prt === false) return cb(rt);
-            cb(sendcl.responseTextParse(rt)); 
+            if (typeof cb === 'function') cb(sendcl.responseTextParse(rt)); 
         }
 
         const formData = new FormData();
-        formData.append('POSTob', JSON.stringify(sob)); 
+        if (sob) formData.append('POSTob', JSON.stringify(sob));
         XHR.send(formData);        
         
     }

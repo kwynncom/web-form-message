@@ -1,6 +1,8 @@
 <?php
 
-require_once('serverDB.php');
+require_once('/opt/kwynn/kwutils.php');
+require_once(__DIR__ . '/serverDB.php');
+
 receive();
 
 function receive() {
@@ -18,7 +20,7 @@ function receive() {
 
 	if (isset($a['action']) && 
 			  $a['action'] === 'getpageid') { 
-		$rid = uoids();
+		$rid = dao_generic_3::get_oids(TRUE);
 		$pidr['pageidact'] = 'OK';
 		$pidr['pageid'] = $rid;
 		kwjae($pidr);

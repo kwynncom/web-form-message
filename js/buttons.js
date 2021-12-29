@@ -5,12 +5,17 @@ function onmsgDone() {
 
 class onnew {
     
+    config() {
+        this.surl = 'srv/server.php';
+    }
+    
     static pageid() {
         const pid = byid('pageid').value;
         return pid;
     }
     
     constructor() {
+        this.config();
         onnew.do10(false);
         this.do20();
     }
@@ -18,7 +23,7 @@ class onnew {
     do20() {
         const ob = {};
         ob.action = 'getpageid';
-        sendcl.sobf(ob, this.dor30);
+        sendcl.sobf(this.surl, ob, this.dor30);
     }
     
     dor30(a) {
