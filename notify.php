@@ -22,7 +22,7 @@ class notify_email_msgs extends dao_msg {
 	
 	private function do10() { 
 		$nsd = self::nsd;
-		$res = $this->mcoll->findOne([$nsd => ['$nin' => ['seen', 'sent']]], ['sort' => ['cre_ts' => -1]]); 
+		$res = $this->mcoll->count([$nsd => ['$nin' => ['seen', 'sent']]]); 
 		if (!$res) return;
 		$this->do20();
 		return;
@@ -30,13 +30,15 @@ class notify_email_msgs extends dao_msg {
 	
 	private function do20() { // Wed 12/29 - set a seen button in list; it sets as seen and drops the notice / prenot table (collection)
 		$ba = [0.1, 1, 3, 5, 10, 20, 40];
+		// $ba = [0.0001, 0.0002, 0.003, 0.0004, 0.00001, 0.0003, 3, 5];
 		$ban = count($ba);
 		$now = time();
 
 		for ($i = $ban - 1; $i >=0; $i--) {
-			$ckts = $now - 3600 * $ba[$i];
+			$ckts = intval(round($now - 3600 * $ba[$i]));
 			$ckhu = date('r', $ckts);
 			$dbn = $this->ncoll->count(['ts' => ['$gt' => $ckts]]);
+			if ($dbn === 0) break;
 			if ($dbn > $i) return;
 		}
 		
