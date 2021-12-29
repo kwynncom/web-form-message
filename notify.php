@@ -17,28 +17,36 @@ class notify_email_msgs extends dao_msg {
 	}
 	
 	private function setup() {
+		$this->creTabs(['n' => 'prenot']);
 	}
 	
 	private function do10() { 
 		$nsd = self::nsd;
-		$cnt = $this->mcoll->count([$nsd => ['$ne' => 'seen']]); 
-		if ($cnt === 0) return;
-		$cnt = $this->mcoll->count([$nsd => ['$ne' => 'sent']]); 
-		if ($cnt === 0) return;
+		$res = $this->mcoll->findOne([$nsd => ['$nin' => ['seen', 'sent']]], ['sort' => ['cre_ts' => -1]]); 
+		if (!$res) return;
 		$this->do20();
 		return;
 	}
 	
-	private function do20() {
-		$res = $this->mcoll->findOne([self::nsd => ['$ne' => 'sent']], ['sort' => ['cre_ts' => -1]]);
-		if (!$res) return;
-		$max = $res['cre_ts'];
-		if (time() - self::maxSendS < $max) return;
+	private function do20() { // Wed 12/29 - set a seen button in list; it sets as seen and drops the notice / prenot table (collection)
+		$ba = [0.1, 1, 3, 5, 10, 20, 40];
+		$ban = count($ba);
+		$now = time();
+
+		for ($i = $ban - 1; $i >=0; $i--) {
+			$ckts = $now - 3600 * $ba[$i];
+			$ckhu = date('r', $ckts);
+			$dbn = $this->ncoll->count(['ts' => ['$gt' => $ckts]]);
+			if ($dbn > $i) return;
+		}
+		
 
 		$this->do30();
 	}
 	
 	private function do30() {
+		$ts = $dat['ts'] = time(); $dat['r'] = date('r', $ts);
+		$this->ncoll->insertOne($dat);
 		$emr = kwynn_email::send('notify', 'testing - no limits yet');
 		$nsd = self::nsd;
 		if ($emr) $res = $this->mcoll->updateMany([$nsd => ['$nin' => ['seen', 'sent']]], ['$set' => [$nsd => 'sent']]);
