@@ -7,7 +7,9 @@ require_once(__DIR__ . '/srv/serverDB.php');
 class notify_email_msgs extends dao_msg {
 
 	const nsd = 'nsd';
-
+	const maxSendS = 10000;
+	// const maxSendS = -1;
+	
 	public function __construct() {	
 		parent::__construct();
 		$this->setup();
@@ -15,30 +17,31 @@ class notify_email_msgs extends dao_msg {
 	}
 	
 	private function setup() {
-		$this->creTabs(['n' => 'notice']);
 	}
 	
 	private function do10() { 
-		$k = self::nsd;
-		$nnc = $this->mcoll->count([$k => ['$ne' => 'sent']]); 
-		if ($nnc === 0) return; // sent versus seen
+		$nsd = self::nsd;
+		$cnt = $this->mcoll->count([$nsd => ['$ne' => 'seen']]); 
+		if ($cnt === 0) return;
+		$cnt = $this->mcoll->count([$nsd => ['$ne' => 'sent']]); 
+		if ($cnt === 0) return;
 		$this->do20();
 		return;
 	}
 	
 	private function do20() {
-		$cnt = $this->ncoll->count();
-		if ($cnt > 0) return;
+		$res = $this->mcoll->findOne([self::nsd => ['$ne' => 'sent']], ['sort' => ['cre_ts' => -1]]);
+		if (!$res) return;
+		$max = $res['cre_ts'];
+		if (time() - self::maxSendS < $max) return;
+
 		$this->do30();
 	}
 	
 	private function do30() {
 		$emr = kwynn_email::send('notify', 'testing - no limits yet');
-		$ts = $dat['ts'] = time(); $dat['r'] = date('r', $ts);
-		$dat['emstatus'] = $emr;
-		$this->ncoll->insertOne($dat);
 		$nsd = self::nsd;
-		if ($emr) $res = $this->mcoll->updateMany([$nsd => 'sweep'], ['$set' => [$nsd => 'sent']]);
+		if ($emr) $res = $this->mcoll->updateMany([$nsd => ['$nin' => ['seen', 'sent']]], ['$set' => [$nsd => 'sent']]);
 	}
 	
 }
