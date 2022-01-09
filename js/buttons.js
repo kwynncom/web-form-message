@@ -23,7 +23,7 @@ class onnew {
     do20() {
         const ob = {};
         ob.action = 'getpageid';
-        sendcl.sobf(this.surl, ob, this.dor30);
+        kwjss.sobf(this.surl, ob, this.dor30);
     }
     
     dor30(a) {

@@ -11,7 +11,6 @@ require_once(__DIR__ . '/config.php');
 
 <script src='js/buttons.js'></script>
 <script src='/opt/kwynn/js/utils.js'      ></script>
-<script src='js/gen/send.js'></script>
 <script src='js/gen/ioregulatedProgressMsgs.js'></script>
 <script src='js/gen/ioregulated.js'></script>
 <script src='js/gen/notify.js'></script>
