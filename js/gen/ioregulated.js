@@ -12,7 +12,7 @@ class kwior {
         
     notifyI(din) { if (typeof this.notiff === 'function') this.notiff(din); }
 	
-	static setAllEles() { document.querySelectorAll('input[type=text], textarea').forEach(function(e) { new kwior(e, sendcl.sendEle); }); }
+	static setAllEles() { document.querySelectorAll('input[type=text], textarea').forEach(function(e) { new kwior(e, kwjss.sendEle); }); }
 	
 	static setEle(e, cb, mreid)  { new kwior(e, cb, mreid);	}
 	

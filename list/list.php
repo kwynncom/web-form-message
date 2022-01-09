@@ -23,7 +23,7 @@ class msg_public_list {
 			$ht .= '<tr>';
 			$ht .= '<td>';
 			++$i;
-			$ht .= "<a class='mref' href='listT.php?n=$i&pubid=$r[pubid]'>";
+			$ht .= "<a class='mref' href='listTP.php?n=$i&pubid=$r[pubid]'>";
 			// $ht .= $r['pubid'];
 			// $ht .= "'>";
 			$ht .= $i;
@@ -41,9 +41,14 @@ class msg_public_list {
 	}
 	
 	private static function showSecretOrDie() {
-		if (isKwGoo()) return TRUE;		
-		if (file_exists('/var/kwynn/i_am_Kwynn_local_dev_2021_11')) return TRUE;
+		if (self::gooOrDev() === TRUE) return TRUE;
 		die('not-auth-ssod-msgs');
+	}
+	
+	public static function gooOrDev() {
+		if (isKwGoo()) return TRUE;		
+		if (file_exists('/var/kwynn/i_am_Kwynn_local_dev_2021_11')) return TRUE;		
+		return FALSE;
 	}
 	
 	public static function getMsg() {

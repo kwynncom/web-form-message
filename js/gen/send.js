@@ -1,4 +1,4 @@
-class sendcl {
+/*class sendcl {
     
     static responseTextParse(t) {
 	let o = false;
@@ -33,3 +33,4 @@ class sendcl {
         
     }
 }
+*/

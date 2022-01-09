@@ -10,7 +10,7 @@ require_once(__DIR__ . '/config.php');
 <title>send a message</title>
 
 <script src='js/buttons.js'></script>
-<script src='js/gen/utils.js'      ></script>
+<script src='/opt/kwynn/js/utils.js'      ></script>
 <script src='js/gen/send.js'></script>
 <script src='js/gen/ioregulatedProgressMsgs.js'></script>
 <script src='js/gen/ioregulated.js'></script>
@@ -39,7 +39,7 @@ require_once(__DIR__ . '/config.php');
 	</div>
 	<div>
 		<button class='dbtn' onclick='onmsgDone();'>Done</button>
-		<a class='lista' href='./list/listT.php'>msg list</a>
+		<a class='lista' href='./list/listTP.php'>msg list</a>
 		<button onclick='new onnew();'>new</button>
 		<a href='/'>home</a>
 	</div>

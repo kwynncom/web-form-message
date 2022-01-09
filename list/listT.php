@@ -10,6 +10,8 @@
     body { font-family: sans-serif; }
 	.mref { font-size: 120%; }
 	td.len { padding-left: 1.5ex; text-align: right; }
+	.sbp { margin-top: 3ex; margin-left: 8ex; }
+	button { font-size: 150%; }
 </style>
 </head>
 <body>
@@ -27,11 +29,15 @@
 		<tr><th></th><th></th><th>len</th></tr>
 <?php echo($r10); ?>
 	</table>
-<?php 
+<?php if ($G_KW_IKGOO) { ?>
+	<div class='sbp'>
+		<button>seen</button>
+	</div>
+	<?php } unset($G_KW_IKGOO );
 	}
 	if (is_array($r10)) {  ?>
 	<div>
-		<p>back to <a href='./listT.php'>list</a></p>
+		<p>back to <a href='./listTP.php'>list</a></p>
 		<div>
 		<?php echo($r10['msg']); ?>
 		</div>
