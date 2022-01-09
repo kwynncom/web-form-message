@@ -10,14 +10,30 @@ class notify_email_msgs extends dao_msg {
 	const maxSendS = 10000;
 	// const maxSendS = -1;
 	
-	public function __construct() {	
+	public $matmod = [];
+	
+	public function __construct($markAsSeenA = false) {	
 		parent::__construct();
 		$this->setup();
-		$this->do10(); 
+		if ($markAsSeenA) $this->markAsSeen($markAsSeenA);
+		else $this->do10(); 
 	}
 	
 	private function setup() {
 		$this->creTabs(['n' => 'prenot']);
+	}
+	
+	private function markAsSeen($a) {
+		foreach($a as $rraw) {
+			$puid = dao_generic_3::oidsvd($rraw);
+			continue;
+		}
+		
+		$dres = $this->ncoll->drop(); // can be "not found" and leak too much info to return without processing
+		$res = $this->mcoll->upsertMany(['pubid' => ['$in' => $a]], [self::nsd => 'seen']);
+		$ret['mat'] = $res->getMatchedCount();
+		$ret['mod'] = $res->getModifiedCount();
+		$this->matmod = $ret;
 	}
 	
 	private function do10() { 

@@ -34,7 +34,7 @@ class dao_msg extends dao_generic_3 {
 		return $a;
 	}
 	
-	public function putOrDie($ain) {
+	public function putMsgOrDie($ain) {
 		$a = self::valOrDie ($ain); unset($ain);
 		$ids = $a['pageid'] . '-' . $a['eid'];
 		unset ($a['pageid']);

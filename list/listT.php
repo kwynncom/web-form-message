@@ -4,7 +4,10 @@
 <meta http-equiv='Content-Type' content='text/html; charset=UTF-8' />
 <meta name='viewport' content='width=device-width, initial-scale=1.0' />
 
-<title>title</title>
+<title>message list</title>
+
+<script src='/opt/kwynn/js/utils.js'></script>
+<script src='../js/seen.js'></script>
 
 <style>
     body { font-family: sans-serif; }
@@ -31,7 +34,7 @@
 	</table>
 <?php if ($G_KW_IKGOO) { ?>
 	<div class='sbp'>
-		<button>seen</button>
+		<button onclick='markAsSeen();'>seen</button>
 	</div>
 	<?php } unset($G_KW_IKGOO );
 	}
