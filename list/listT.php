@@ -13,8 +13,8 @@
     body { font-family: sans-serif; }
 	.mref { font-size: 120%; }
 	td.len { padding-left: 1.5ex; text-align: right; }
-	.sbp { margin-top: 3ex; margin-left: 8ex; }
-	button { font-size: 150%; }
+	.sbp { margin-top: 3ex; margin-left: 5ex; }
+	button { font-size: 150%; display: inline-block; margin-right: 3ex; }
 </style>
 </head>
 <body>
@@ -34,7 +34,9 @@
 	</table>
 <?php if ($G_KW_IKGOO) { ?>
 	<div class='sbp'>
-		<button onclick='markAsSeen();'>seen</button>
+		<button id='seenBtn' onclick='new markAsSeenJScl();'>seen</button>
+		<button onclick='history.go(0);'>reload</button>
+		<div id='seenRes'></div>
 	</div>
 	<?php } unset($G_KW_IKGOO );
 	}

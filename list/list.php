@@ -1,7 +1,6 @@
 <?php
 
 require_once(__DIR__ . '/../srv/serverDB.php');
-require_once('/opt/kwynn/isKwGoo.php');
 
 class msg_public_list {
 	public static function getHT() { 
@@ -41,7 +40,7 @@ class msg_public_list {
 	}
 	
 	private static function showSecretOrDie() {
-		if (gooOrDev() === TRUE) return TRUE;
+		if (isMyCookie() === TRUE) return TRUE;
 		die('not-auth-ssod-msgs');
 	}
 	

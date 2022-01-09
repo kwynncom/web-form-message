@@ -29,7 +29,7 @@ function receive() {
 	}
 
 	if (($aa = ifs($a, 'a')) && ifs($a, 'type') && $a['type'] === 'seen') {
-		kwas(gooOrDev(TRUE), 'just a double check for truth');
+		kwas(isMyCookie(TRUE), 'just a double check for truth');
 		$o = new notify_email_msgs($aa);
 		kwjae($o->matmod);
 	}

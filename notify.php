@@ -24,6 +24,7 @@ class notify_email_msgs extends dao_msg {
 	}
 	
 	private function markAsSeen($a) {
+		kwas(is_array($a), 'improper type markAsSeen - 1809');
 		foreach($a as $rraw) {
 			$puid = dao_generic_3::oidsvd($rraw);
 			continue;
@@ -31,7 +32,8 @@ class notify_email_msgs extends dao_msg {
 		
 		$dres = $this->ncoll->drop(); // can be "not found" and leak too much info to return without processing
 		$res = $this->mcoll->upsertMany(['pubid' => ['$in' => $a]], [self::nsd => 'seen']);
-		$ret['mat'] = $res->getMatchedCount();
+		$mat = $ret['mat'] = $res->getMatchedCount(); kwas($mat === count($a), 'all rows should match - markAsSeen 1810');
+		$ret['status'] = 'OK';
 		$ret['mod'] = $res->getModifiedCount();
 		$this->matmod = $ret;
 	}
