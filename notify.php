@@ -46,7 +46,7 @@ class notify_email_msgs extends dao_msg {
 		return;
 	}
 	
-	private function do20() { // Wed 12/29 - set a seen button in list; it sets as seen and drops the notice / prenot table (collection)
+	private function do20() {
 		$ba = [0.1, 1, 3, 5, 10, 20, 40];
 		// $ba = [0.0001, 0.0002, 0.003, 0.0004, 0.00001, 0.0003, 3, 5];
 		$ban = count($ba);
@@ -59,7 +59,6 @@ class notify_email_msgs extends dao_msg {
 			if ($dbn === 0) break;
 			if ($dbn > $i) return;
 		}
-		
 
 		$this->do30();
 	}

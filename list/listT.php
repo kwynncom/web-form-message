@@ -15,6 +15,10 @@
 	td.len { padding-left: 1.5ex; text-align: right; }
 	.sbp { margin-top: 3ex; margin-left: 5ex; }
 	button { font-size: 150%; display: inline-block; margin-right: 3ex; }
+	a { padding-right: 2ex; }
+	.tar { text-align: right; }
+	td    { padding-bottom: 1.5vh; }
+	.snum { font-size: 120%; }
 </style>
 </head>
 <body>
@@ -23,20 +27,20 @@
 	$r10 = msg_public_list::getHT();
 	if (is_string($r10)) {
 ?>
-	<p>The messages are not public.  The links only work for me.
+	<p>
 		<a href='../'>new msg</a>
 		<a href='/'>home</a>
 	</p>
 
 	<table>
-		<tr><th></th><th></th><th>len</th></tr>
+		<tr><th></th><th>msg started</th><th>len</th></tr>
 <?php echo($r10); ?>
 	</table>
 <?php if ($G_KW_IKGOO) { ?>
+	<div id='seenRes'></div>
 	<div class='sbp'>
 		<button id='seenBtn' onclick='new markAsSeenJScl();'>seen</button>
 		<button onclick='history.go(0);'>reload</button>
-		<div id='seenRes'></div>
 	</div>
 	<?php } unset($G_KW_IKGOO );
 	}

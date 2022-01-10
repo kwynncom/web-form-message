@@ -16,7 +16,7 @@ class markAsSeenJScl {
         const sre = byid('seenRes')
         let t = 'unknown result';
         if (!o || !o.status || o.status !== 'OK') t = 'failure';
-        else t = o.mat + ' matched, ' + o.mod + ' modified / marked seen';
+        else t = o.mat + ' match, ' + o.mod + ' marked seen';
         byid('seenBtn').style.visibility = 'hidden';
         sre.innerHTML = t;
        

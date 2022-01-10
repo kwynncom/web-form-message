@@ -37,9 +37,9 @@ require_once(__DIR__ . '/config.php');
 		<textarea			id='msg' ></textarea>
 	</div>
 	<div>
-		<button class='dbtn' onclick='onmsgDone();'>Done</button>
-		<a class='lista' href='./list/listTP.php'>msg list</a>
+		<button class='dbtn' onclick='onmsgDone();'>done</button>
 		<button onclick='new onnew();'>new</button>
+		<a class='lista' href='./list/listTP.php'>msg list</a>
 		<a href='/'>home</a>
 	</div>
 </body>

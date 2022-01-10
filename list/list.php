@@ -13,6 +13,9 @@ class msg_public_list {
 	public function getHTI() { return $this->oht; }
 	private function do10() {
 		
+		global $G_KW_IKGOO;
+		$ism = $G_KW_IKGOO;
+		
 		if ($msght = self::getMsg()) return ['msg' => $msght];
 		$res = dao_msg::getPubList();
 		
@@ -20,16 +23,14 @@ class msg_public_list {
 		$i = 0;
 		foreach($res as $r) {
 			$ht .= "<tr data-pubid='$r[pubid]'>";
-			$ht .= '<td>';
+			$ht .= '<td class="tar snum">';
 			++$i;
-			$ht .= "<a class='mref' href='listTP.php?n=$i&pubid=$r[pubid]'>";
-			// $ht .= $r['pubid'];
-			// $ht .= "'>";
+			if ($ism) $ht .= "<a class='mref' href='listTP.php?n=$i&pubid=$r[pubid]'>";
 			$ht .= $i;
-			$ht .= '</a>';
+			if ($ism) $ht .= '</a>';
 			$ht .= '</td>';
 			$ht .= '<td>';
-			$ht .= date('m/d/Y H:i:s', $r['up_ts']);
+			$ht .= date('m/d H:i:s', $r['cre_ts']);
 			$ht .= '</td>';
 			$ht .= '<td  class="len">';
 			$ht .= $r['len'];
