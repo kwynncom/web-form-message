@@ -66,9 +66,17 @@ class notify_email_msgs extends dao_msg {
 	private function do30() {
 		$ts = $dat['ts'] = time(); $dat['r'] = date('r', $ts);
 		$this->ncoll->insertOne($dat);
-		$emr = kwynn_email::send('notify', 'testing - no limits yet');
+		$emr = kwynn_email::send('new web form msg', self::nmsg(), TRUE);
 		$nsd = self::nsd;
 		if ($emr) $res = $this->mcoll->updateMany([$nsd => ['$nin' => ['seen', 'sent']]], ['$set' => [$nsd => 'sent']]);
+	}
+	
+	public static function nmsg() {
+		$nmsg = <<<'NMSG'
+		  <p><a href='https://kwynn.com/t/22/01/msg22/list/listTP.php'>list</a></p>
+NMSG;
+		
+		return $nmsg;
 	}
 	
 }
