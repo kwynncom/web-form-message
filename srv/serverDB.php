@@ -19,7 +19,7 @@ class dao_msg extends dao_generic_3 {
 	private function otherDB() { $this->mcoll->createIndex(['pubid' => -1], ['unique' => true]);	}
 	
 	public function getPubListI() {
-		$res = $this->mcoll->find([], ['sort' => ['up_ts' => -1], 
+		$res = $this->mcoll->find([], ['sort' => ['cre_ts' => 1], 
 					'projection' => ['_id' => 0, 'up_ts' => 1, 'cre_ts' => 1, 'len' => 1, 'pubid' => 1]]);
 		return $res;
 	}
