@@ -29,7 +29,7 @@
 ?>
 	<p>
 		<a href='../'>new msg</a>
-		<a href='/'>home</a>
+		<a href='../more.html'>more</a>
 	</p>
 
 	<table>

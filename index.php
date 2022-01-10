@@ -40,7 +40,7 @@ require_once(__DIR__ . '/config.php');
 		<button class='dbtn' onclick='onmsgDone();'>done</button>
 		<button onclick='new onnew();'>new</button>
 		<a class='lista' href='./list/listTP.php'>msg list</a>
-		<a href='/'>home</a>
+		<a href='/t/22/01/msg22/more.html'>more</a>
 	</div>
 </body>
 </html>
