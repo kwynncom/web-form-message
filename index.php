@@ -28,9 +28,9 @@ require_once(__DIR__ . '/config.php');
 </head>
 <body>
 	<div class='stad'>
-		<span id='kwjsioResponseEle'></span>
-		<span id='savedCh'>0</span>
-		/ <span><?php echo(KW_MSG_2021_1226_1_MAXLEN); ?> saved</span>
+		<span id='kwjsioResponseEle'></span> 
+		<span id='savedCh'>0</span> sent
+		/ <span><?php echo(KW_MSG_2021_1226_1_MAXLEN); ?> max</span>
 	</div>
 	<div>
 		<input id='pageid' type='hidden' value='<?php echo(dao_generic_3::get_oids(TRUE)); ?>' />
