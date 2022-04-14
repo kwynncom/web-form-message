@@ -28,7 +28,7 @@ function receive() {
 
 	}
 
-	if (($aa = ifs($a, 'a')) && ifs($a, 'type') && $a['type'] === 'seen') {
+	if (($aa = kwifse($a, 'a')) && kwifse($a, 'type') && $a['type'] === 'seen') {
 		kwas(isMyCookie(TRUE), 'just a double check for truth');
 		$o = new notify_email_msgs($aa);
 		kwjae($o->matmod);

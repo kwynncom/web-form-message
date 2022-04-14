@@ -9,13 +9,8 @@ class dao_msg extends dao_generic_3 {
 		parent::__construct(self::dbName, __FILE__);
 		$this->creTabs(['m' => 'msgs']);
 		$this->otherDB();
-		$this->clean();
     }
 
-	private function clean() {
-		// if (!isAWS() & time() < strtotime('2021-12-26 03:50')) $this->mcoll->drop();
-	}
-	
 	private function otherDB() { $this->mcoll->createIndex(['pubid' => -1], ['unique' => true]);	}
 	
 	public function getPubListI() {
