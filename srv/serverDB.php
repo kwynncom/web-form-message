@@ -22,7 +22,7 @@ class dao_msg extends dao_generic_3 {
 	public static function getPubList() { $o = new self(); return $o->getPubListI(); }
 	
 	public static function valOrDie($a) {
-		kwas(is_array($a) && count($a) === 3, 'bad input count - 0244');
+		kwas(is_array($a) && count($a) >= 3, 'bad input count - 0244'); unset($a['eleType']);
 		kwas(dao_generic_3::oidsvd($a['pageid'], TRUE), 'bad pageid');
 		kwas(is_string($a['v']) && strlen($a['v']) <= KW_MSG_2021_1226_1_MAXLEN, 'not string / too long');	
 		kwas($a['eid'] === 'msg', 'bad input property - 0243');
