@@ -20,13 +20,15 @@ class msg_public_list {
 		$res = dao_msg::getPubList();
 		
 		$ht = '';
+		
 		$i = 0;
+		if ($res) $i = count($res);
+			
 		foreach($res as $r) {
 			$ht .= "<tr data-pubid='$r[pubid]'>";
 			$ht .= '<td class="tar snum">';
-			++$i;
 			if ($ism) $ht .= "<a class='mref' href='listTP.php?n=$i&pubid=$r[pubid]'>";
-			$ht .= $i;
+			$ht .= $i--;
 			if ($ism) $ht .= '</a>';
 			$ht .= '</td>';
 			$ht .= '<td>';

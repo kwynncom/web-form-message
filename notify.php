@@ -3,6 +3,7 @@
 require_once('/opt/kwynn/kwutils.php');
 require_once('/opt/kwynn/email.php');
 require_once(__DIR__ . '/srv/serverDB.php');
+require_once(__DIR__ . '/log/log.php');
 
 class notify_email_msgs extends dao_msg {
 
@@ -39,11 +40,23 @@ class notify_email_msgs extends dao_msg {
 	}
 	
 	private function do10() { 
+		
+		$this->logInit();
+		
 		$nsd = self::nsd;
 		$res = $this->mcoll->count([$nsd => ['$nin' => ['seen', 'sent']]]); 
 		if (!$res) return;
+		
+		$this->logo->log("unseen = $res");
+		
 		$this->do20();
 		return;
+	}
+	
+	private function logInit() {
+		$this->logo = new webFormMsgLog();
+		$tot = $this->mcoll->count(); 
+		$this->logo->log("tot = $tot");
 	}
 	
 	private function do20() {
